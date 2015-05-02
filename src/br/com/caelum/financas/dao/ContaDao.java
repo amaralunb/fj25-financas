@@ -29,4 +29,4 @@ public class ContaDao {
 	public void remove(Conta conta) {
 		entityManager.remove(entityManager.merge(conta));
 	}
-}
+}	
