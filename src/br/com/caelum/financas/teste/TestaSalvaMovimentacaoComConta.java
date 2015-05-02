@@ -5,6 +5,8 @@ import java.util.Calendar;
 
 import javax.persistence.EntityManager;
 
+import br.com.caelum.financas.dao.ContaDao;
+import br.com.caelum.financas.dao.MovimentacaoDao;
 import br.com.caelum.financas.modelo.Conta;
 import br.com.caelum.financas.modelo.Movimentacao;
 import br.com.caelum.financas.modelo.TipoMovimentacao;
@@ -12,8 +14,11 @@ import br.com.caelum.financas.util.JPAUtil;
 
 public class TestaSalvaMovimentacaoComConta {
 	public static void main(String[] args) {
+		
 		EntityManager entityManager = new JPAUtil().getEntityManager();
-		entityManager.getTransaction().begin();
+		
+		ContaDao contaDao = new ContaDao(entityManager);
+		MovimentacaoDao movimentacaoDao = new MovimentacaoDao(entityManager);
 		
 		Conta conta = new Conta();
 		
@@ -26,12 +31,14 @@ public class TestaSalvaMovimentacaoComConta {
 		
 		movimentacao.setConta(conta);
 		movimentacao.setData(Calendar.getInstance());
-		movimentacao.setDescricao("Conta de Luz - Maio/15");
-		movimentacao.setValor(new BigDecimal("125"));
+		movimentacao.setDescricao("Conta de Luz - Agosto/15");
+		movimentacao.setValor(new BigDecimal("85"));
 		movimentacao.setTipoMovimentacao(TipoMovimentacao.SAIDA);
 	
-		entityManager.persist(conta);
-		entityManager.persist(movimentacao);
+		entityManager.getTransaction().begin();
+		
+		contaDao.adiciona(conta);
+		movimentacaoDao.adiciona(movimentacao);
 		
 		entityManager.getTransaction().commit();
 		entityManager.close();
