@@ -30,6 +30,7 @@ public class TestaSalvaMovimentacaoComConta {
 		movimentacao.setValor(new BigDecimal("125"));
 		movimentacao.setTipoMovimentacao(TipoMovimentacao.SAIDA);
 	
+		entityManager.persist(conta);
 		entityManager.persist(movimentacao);
 		
 		entityManager.getTransaction().commit();
