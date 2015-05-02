@@ -1,7 +1,6 @@
 package br.com.caelum.financas.teste;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
 
 import javax.persistence.EntityManager;
 
@@ -22,18 +21,17 @@ public class TestaSalvaMovimentacaoComConta {
 		
 		Conta conta = new Conta();
 		
-		conta.setBanco("Santander");
-		conta.setNumero("9999909");
-		conta.setAgencia("999");
-		conta.setTitular("Maria da Silva");
+		conta.setBanco("Banco do Brasil");
+		conta.setNumero("00123-9");
+		conta.setAgencia("259");
+		conta.setTitular("Guilherme Borges");
 		
 		Movimentacao movimentacao = new Movimentacao();
 		
 		movimentacao.setConta(conta);
-		movimentacao.setData(Calendar.getInstance());
-		movimentacao.setDescricao("Conta de Luz - Agosto/15");
-		movimentacao.setValor(new BigDecimal("85"));
-		movimentacao.setTipoMovimentacao(TipoMovimentacao.SAIDA);
+		movimentacao.setDescricao("Depósito Bancário");
+		movimentacao.setValor(new BigDecimal("2500"));
+		movimentacao.setTipoMovimentacao(TipoMovimentacao.ENTRADA);
 	
 		entityManager.getTransaction().begin();
 		
