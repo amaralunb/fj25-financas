@@ -13,7 +13,7 @@ public class TestaPesquisaIdConta {
 		
 		ContaDao dao = new ContaDao(entityManager);
 		
-		Conta encontrado = dao.busca(1);
+		Conta encontrado = dao.busca(4);
 		
 		System.out.println(encontrado.getTitular());
 		
